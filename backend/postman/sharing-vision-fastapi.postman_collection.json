@@ -1,0 +1,34 @@
+{
+  "info": {
+    "name": "Sharing Vision FastAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "base_url", "value": "http://localhost:8000"},
+    {"key": "article_id", "value": "1"}
+  ],
+  "item": [
+    {"name": "Health", "request": {"method": "GET", "url": "{{base_url}}/health"}},
+    {
+      "name": "Create Article",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"title\": \"Judul artikel dengan panjang cukup\",\n  \"content\": \"Konten artikel harus memiliki sekurang-kurangnya dua ratus karakter. Tambahkan isi artikel yang relevan hingga aturan validasi terpenuhi. Konten ini sengaja dibuat panjang agar dapat dipakai sebagai contoh request API untuk development lokal aplikasi.\",\n  \"category\": \"Teknologi\",\n  \"status\": \"draft\"\n}"},
+        "url": "{{base_url}}/article/"
+      }
+    },
+    {"name": "List Articles", "request": {"method": "GET", "url": "{{base_url}}/article/10/0"}},
+    {"name": "Get Article", "request": {"method": "GET", "url": "{{base_url}}/article/{{article_id}}"}},
+    {
+      "name": "Update Article",
+      "request": {
+        "method": "PUT",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"title\": \"Judul artikel yang telah diperbarui\",\n  \"content\": \"Konten artikel harus memiliki sekurang-kurangnya dua ratus karakter. Tambahkan isi artikel yang relevan hingga aturan validasi terpenuhi. Konten ini sengaja dibuat panjang agar dapat dipakai sebagai contoh request API untuk development lokal aplikasi.\",\n  \"category\": \"Teknologi\",\n  \"status\": \"publish\"\n}"},
+        "url": "{{base_url}}/article/{{article_id}}"
+      }
+    },
+    {"name": "Delete Article", "request": {"method": "DELETE", "url": "{{base_url}}/article/{{article_id}}"}}
+  ]
+}
